@@ -3,577 +3,257 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Project GoatBot</title>
+    <title>Project Redd Bot</title>
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <style>
-        @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
-
-        html {
-            position: relative;
-            overflow-x: hidden !important;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Quicksand", sans-serif;
-            color: #324e63;
-        }
-
-        a,
-        a:hover {
-            text-decoration: none;
-        }
-
-        .icon {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            stroke-width: 0;
-            stroke: currentColor;
-            fill: currentColor;
-        }
-
-        .wrapper {
-            width: 100%;
-            width: 100%;
-            height: auto;
-            min-height: 100vh;
-            padding: 50px 20px;
-            padding-top: 100px;
-            display: flex;
-            background: rgb(255, 255, 255);
-            display: flex;
-        }
-
-        @media screen and (max-width: 768px) {
-            .wrapper {
-                height: auto;
-                min-height: 100vh;
-                padding-top: 100px;
-            }
-        }
-
-        .profile-card {
-            width: 100%;
-            min-height: 460;
-            margin: auto;
-            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-            background: rgb(235, 235, 235);
-            border-radius: 12px;
-            max-width: 800px;
-            position: relative;
-        }
-
-        .profile-card.active .profile-card__cnt {
-            filter: blur(6px);
-        }
-
-        .profile-card.active .profile-card-message,
-        .profile-card.active .profile-card__overlay {
-            opacity: 1;
-            pointer-events: auto;
-            transition-delay: 0.1s;
-        }
-
-        .profile-card.active .profile-card-form {
-            transform: none;
-            transition-delay: 0.1s;
-        }
-
-        .profile-card__img {
-            width: 150px;
-            height: 150px;
-            margin-left: auto;
-            margin-right: auto;
-            transform: translateY(-50%);
-            border-radius: 50%;
-            overflow: hidden;
-            position: relative;
-            z-index: 4;
-            box-shadow: 0px 2px 40px 0px rgba(25, 27, 29, 0.729), 0px 0px 25px 0px rgba(15, 16, 17, 0.832);
-        }
-
-        @media screen and (max-width: 576px) {
-            .profile-card__img {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
-        .profile-card__img img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .profile-card__cnt {
-            margin-top: -35px;
-            text-align: center;
-            padding: 0 20px;
-            padding-bottom: 40px;
-            transition: all 0.3s;
-        }
-
-        .profile-card__name {
-            font-weight: 700;
-            font-size: 24px;
-            color: #000000;
-            margin-bottom: 15px;
-        }
-
-        .profile-card__txt {
-            font-size: 18px;
-            font-weight: 500;
-            color: #000000;
-            margin-bottom: 15px;
-        }
-
-        .profile-card__txt strong {
-            font-weight: 700;
-        }
-
-        .profile-card__homepage {
-            font-size: 18px;
-            font-weight: 500;
-            color: #000000;
-            margin-top: 15px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .profile-card-loc {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 600;
-            color: #000000;
-        }
-
-        .profile-card-loc__icon {
-            display: inline-flex;
-            font-size: 27px;
-            margin-right: 10px;
-        }
-
-        .profile-card-inf {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            margin-top: 35px;
-        }
-
-        .profile-card-inf__item {
-            padding: 10px 35px;
-            min-width: 150px;
-        }
-
-        @media screen and (max-width: 768px) {
-            .profile-card-inf__item {
-                padding: 10px 20px;
-                min-width: 120px;
-            }
-        }
-
-        .profile-card-loc__txt {
-            color: #000000;
-        }
-
-        .profile-card-inf__title {
-            font-weight: 700;
-            font-size: 27px;
-            color: #000;
-        }
-
-        .profile-card-inf__txt {
-            font-weight: 500;
-            margin-top: 7px;
-            margin-bottom: 30px;
-            color: #000;
-        }
-
-        .profile-card-contacts {
-            margin-top: 25px;
-            margin: 8px 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            border-radius: 50px;
-        }
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap");
 
-        .profile-card-contacts.facebook {
-            background: linear-gradient(45deg, #3b5998, #0078d7);
-            box-shadow: 0px 0px 30px rgba(45, 136, 255, 0.9);
+        :root{
+            --bg-1: linear-gradient(135deg,#0f172a 0%, #0b1220 40%, #071228 100%);
+            --card-bg: rgba(255,255,255,0.06);
+            --card-border: rgba(255,255,255,0.08);
+            --glass-shadow: 0 10px 30px rgba(2,6,23,0.7);
+            --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
+            --muted: #94a3b8;
         }
 
-        .profile-card-contacts.messenger {
-            filter: drop-shadow(0px 0px 20px rgba(159, 0, 203, 0.9));
-            border-radius: 0px;
-        }
-
-        .profile-card-contacts.youtube {
-            box-shadow: 0px 0px 30px rgba(255, 45, 45, 0.9);
-        }
-
-        .profile-card-contacts.github {
-            box-shadow: 0px 0px 30px rgba(38, 38, 38, 0.9);
-        }
-
-        .profile-card-contacts.link {
-            background: linear-gradient(45deg, #d5135a, #f05924);
-            box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.9);
-            height: 50px;
-            width: 50px;
-        }
-
-        .profile-card-social__item {
-            display: inline-flex;
-            width: 55px;
-            height: 55px;
-            margin: 15px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            background: #405de6;
-            box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
-            position: relative;
-            font-size: 21px;
-            flex-shrink: 0;
-            transition: all 0.3s;
-        }
-
-        @media screen and (max-width: 768px) {
-            .profile-card-social__item {
-                width: 50px;
-                height: 50px;
-                margin: 10px;
-            }
-        }
-
-        @media screen and (min-width: 768px) {
-            .profile-card-social__item:hover {
-                transform: scale(1.2);
-            }
-        }
-
-        .profile-card-social__item.facebook {
-            background: linear-gradient(45deg, #3b5998, #0078d7);
-            box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
-        }
-
-        .profile-card-social__item.twitter {
-            background: linear-gradient(45deg, #1da1f2, #0e71c8);
-            box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
-        }
-
-        .profile-card-social__item.instagram {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-            box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
-        }
-
-        .profile-card-social__item.behance {
-            background: linear-gradient(45deg, #1769ff, #213fca);
-            box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
-        }
-
-        .profile-card-social__item.github {
-            background: linear-gradient(45deg, #333333, #626b73);
-            box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
-        }
-
-        .profile-card-social__item.codepen {
-            background: linear-gradient(45deg, #324e63, #414447);
-            box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
-        }
-
-        .profile-card-social__item.link {
-            background: linear-gradient(45deg, #d5135a, #f05924);
-            box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
-        }
+        *{box-sizing:border-box}
 
-        .profile-card-social .icon-font {
-            display: inline-flex;
-        }
-
-        .profile-card-ctr {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        @media screen and (max-width: 576px) {
-            .profile-card-ctr {
-                flex-wrap: wrap;
-            }
-        }
-
-        .profile-card__button {
-            background: none;
-            border: none;
-            font-family: "Quicksand", sans-serif;
-            font-weight: 700;
-            font-size: 19px;
-            margin: 15px 35px;
-            padding: 15px 40px;
-            min-width: 201px;
-            border-radius: 50px;
-            min-height: 55px;
-            color: #fff;
-            cursor: pointer;
-            backface-visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        @media screen and (max-width: 768px) {
-            .profile-card__button {
-                min-width: 170px;
-                margin: 15px 25px;
-            }
-        }
-
-        @media screen and (max-width: 576px) {
-            .profile-card__button {
-                min-width: inherit;
-                margin: 0;
-                margin-bottom: 16px;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .profile-card__button:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .profile-card__button:focus {
-            outline: none !important;
-        }
-
-        @media screen and (min-width: 768px) {
-            .profile-card__button:hover {
-                transform: translateY(-5px);
-            }
-        }
+        html,body{height:100%}
 
-        .profile-card__button:first-child {
-            margin-left: 0;
+        body{
+            margin:0;
+            font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            color:#e6eef6;
+            background: var(--bg-1) fixed;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:40px 16px;
         }
 
-        .profile-card__button:last-child {
-            margin-right: 0;
-        }
+        a{color:inherit}
 
-        .profile-card__button.button--blue {
-            background: linear-gradient(to right, #1d52f2, #5700b9, #ff0061);
-            box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
-        }
+        .wrapper{width:100%;max-width:1000px}
 
-        .profile-card__button.button--blue:hover {
-            box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+        .profile-card{
+            position:relative;
+            border-radius:16px;
+            padding:46px 28px 36px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            border:1px solid var(--card-border);
+            box-shadow:var(--glass-shadow);
+            backdrop-filter: blur(8px) saturate(120%);
+            overflow:hidden;
         }
 
-        .profile-card__button.button--orange {
-            background: linear-gradient(45deg, #d5135a, #f05924);
-            box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+        .top-decor{
+            position:absolute;inset:auto 0 0 0;height:120px;
+            background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));
+            transform:skewY(-3deg);
+            pointer-events:none;
         }
 
-        .profile-card__button.button--orange:hover {
-            box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
-        }
+        .profile-row{display:flex;gap:28px;align-items:center}
 
-        .profile-card__button.button--gray {
-            box-shadow: none;
-            background: #dcdcdc;
-            color: #142029;
-        }
+        .profile-card__img{flex:0 0 120px;width:120px;height:120px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.06)}
+        .profile-card__img img{width:100%;height:100%;object-fit:cover;display:block}
 
-        .profile-card-message {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-top: 130px;
-            padding-bottom: 100px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-        }
+        .profile-meta{flex:1;min-width:0}
+        .profile-card__name{font-weight:700;font-size:24px;margin:0 0 6px;color:#fff}
+        .profile-card__txt{margin:0;color:var(--muted);font-weight:600}
 
-        .profile-card-form {
-            box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            height: 100%;
-            background: #fff;
-            border-radius: 10px;
-            padding: 35px;
-            transform: scale(0.8);
-            position: relative;
-            z-index: 3;
-            transition: all 0.3s;
-        }
+        .profile-card-loc{display:flex;gap:10px;align-items:center;margin-top:8px;color:var(--muted);font-size:14px}
 
-        @media screen and (max-width: 768px) {
-            .profile-card-form {
-                max-width: 90%;
-                height: auto;
-            }
-        }
+        .profile-card__homepage{margin-top:12px;color:var(--muted);font-size:15px}
 
-        @media screen and (max-width: 576px) {
-            .profile-card-form {
-                padding: 20px;
-            }
-        }
+        .profile-card-contacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+        .contact-btn{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 16px rgba(2,6,23,0.6);cursor:pointer}
+        .contact-btn img{width:28px;height:28px;display:block}
 
-        .profile-card-form__bottom {
-            justify-content: space-between;
-            display: flex;
-        }
+        .profile-card-ctr{display:flex;gap:14px;align-items:center;margin-top:20px;flex-wrap:wrap}
+        .btn{padding:12px 20px;border-radius:12px;font-weight:700;border:0;cursor:pointer}
+        .btn:focus{outline:3px solid rgba(124,58,237,0.25);}
+        .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 18px rgba(124,58,237,0.18)}
+        .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 
-        @media screen and (max-width: 576px) {
-            .profile-card-form__bottom {
-                flex-wrap: wrap;
-            }
-        }
+        /* Modal */
+        .modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(2,6,23,0.6);padding:24px;opacity:0;pointer-events:none;transition:all .18s}
+        .modal.open{opacity:1;pointer-events:auto}
+        .modal-card{width:100%;max-width:720px;border-radius:12px;padding:22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(6px)}
+        .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .modal-title{font-weight:700;color:#fff}
+        .close-btn{background:transparent;border:0;color:var(--muted);font-weight:700;padding:6px 10px;border-radius:8px;cursor:pointer}
 
-        .profile-card textarea {
-            width: 100%;
-            resize: none;
-            height: 210px;
-            margin-bottom: 20px;
-            border: 2px solid #dcdcdc;
-            border-radius: 10px;
-            padding: 15px 20px;
-            color: #324e63;
-            font-weight: 500;
-            font-family: "Quicksand", sans-serif;
-            outline: none;
-            transition: all 0.3s;
-        }
+        textarea{width:100%;min-height:160px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);color:#e6eef6}
+        input[type="text"],input[type="email"]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);color:#e6eef6}
 
-        .profile-card textarea:focus {
-            outline: none;
-            border-color: #8a979e;
-        }
+        .meta-row{display:flex;gap:12px;margin-top:12px}
+        @media (max-width:680px){.profile-row{flex-direction:column;align-items:flex-start}.profile-card__img{border-radius:14px}}
 
-        .profile-card__overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            opacity: 0;
-            background: rgba(22, 33, 72, 0.35);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
+        .small-muted{font-size:13px;color:var(--muted)}
     </style>
 
 
-    <link rel="icon" href="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/logo.png">
+    <link rel="icon" href="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/logo.png">
 
 </head>
 
 <body>
     <!-- partial:index.partial.html -->
     <div class="wrapper">
-        <div class="profile-card js-profile-card">
-            <div class="profile-card__img">
-                <img src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/logo.png"
-                    alt="profile card">
-            </div>
+        <div class="profile-card" role="region" aria-label="Redd Bot profile card">
+            <div class="top-decor" aria-hidden="true"></div>
 
-            <div class="profile-card__cnt js-profile-cnt">
-                <div class="profile-card__name">NTKhang</div>
-                <div class="profile-card__txt">Admin Project <strong>Goat Bot</strong></div>
-                <div class="profile-card-loc">
-                    <svg class="svg-icon" viewBox="0 0 20 20" width=25 height=25>
-                        <path fill=black
-                            d="M10,0.186c-3.427,0-6.204,2.778-6.204,6.204c0,5.471,6.204,6.806,6.204,13.424c0-6.618,6.204-7.953,6.204-13.424C16.204,2.964,13.427,0.186,10,0.186z M10,14.453c-0.66-1.125-1.462-2.076-2.219-2.974C6.36,9.797,5.239,8.469,5.239,6.39C5.239,3.764,7.374,1.63,10,1.63c2.625,0,4.761,2.135,4.761,4.761c0,2.078-1.121,3.407-2.541,5.089C11.462,12.377,10.66,13.328,10,14.453z">
-                        </path>
-                        <circle fill="black" cx="10" cy="5.67" r="1.608"></circle>
-                    </svg>
-                    <span class="profile-card-loc__txt">
-                        Vĩnh Long, Việt Nam
-                    </span>
-                </div>
-                <div class="profile-card__homepage">
-                    <span>This is the homepage of the api for that project
-                    </span>
+            <div class="profile-row">
+                <div class="profile-card__img" aria-hidden="true">
+                    <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/logo.png" alt="Redd Bot logo">
                 </div>
 
-                <!--=============== Contacts ===============-->
-                <div class="profile-card-inf__txt">
-                    Contacts Me:
-                </div>
+                <div class="profile-meta">
+                    <h1 class="profile-card__name">PhillipM18</h1>
+                    <div class="profile-card__txt">Project Dev <strong style="color:#fff">Redd Bot</strong></div>
+                    <div class="profile-card-loc">
+                        <svg class="svg-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                            <path fill="currentColor" d="M10,0.186c-3.427,0-6.204,2.778-6.204,6.204c0,5.471,6.204,6.806,6.204,13.424c0-6.618,6.204-7.953,6.204-13.424C16.204,2.964,13.427,0.186,10,0.186z M10,14.453c-0.66-1.125-1.462-2.076-2.219-2.974C6.36,9.797,5.239,8.469,5.239,6.39C5.239,3.764,7.374,1.63,10,1.63c2.625,0,4.761,2.135,4.761,4.761c0,2.078-1.121,3.407-2.541,5.089C11.462,12.377,10.66,13.328,10,14.453z"></path>
+                            <circle cx="10" cy="5.67" r="1.608"></circle>
+                        </svg>
+                        <span class="small-muted">Laguna, Philippines</span>
+                    </div>
 
-                <div class="profile-card-contacts">
+                    <div class="profile-card__homepage">This is the homepage of the API for the project — quick links below.</div>
 
-                    <a href="https://facebook.com/100010382497517">
-                        <img class="profile-card-contacts facebook"
-                            src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/facebook.png"
-                            width=50 height=50 alt="facebook icon">
-                    </a>
+                    <div class="profile-card-contacts" aria-label="Social links">
+                        <a class="contact-btn" href="https://facebook.com/100081759234321" title="Facebook profile" aria-label="Facebook profile">
+                            <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/facebook.png" alt="Facebook">
+                        </a>
 
-                    <a href="https://messenger.com/t/100010382497517">
-                        <img class="profile-card-contacts messenger"
-                            src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/messenger.png"
-                            width=50 height=50 alt="messenger icon">
-                    </a>
+                        <a class="contact-btn" href="https://messenger.com/t/100081759234321" title="Messenger" aria-label="Messenger link">
+                            <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/messenger.png" alt="Messenger">
+                        </a>
 
-                    <a href="https://www.youtube.com/c/NTKhang03/">
-                        <img class="profile-card-contacts youtube"
-                            src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/youtube.png"
-                            width=50 height=50 alt="youtube icon">
-                    </a>
+                        <a class="contact-btn" href="https://www.youtube.com/" title="YouTube" aria-label="YouTube">
+                            <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/youtube.png" alt="YouTube">
+                        </a>
 
-                    <a href="https://github.com/ntkhang03">
-                        <img class="profile-card-contacts github"
-                            src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/github.jpg"
-                            width=50 height=50 alt="github icon">
-                    </a>
-                    <a href="#">
-                        <img src="https://raw.githubusercontent.com/ntkhang03/resources-goat-bot/master/homepage/link.png"
-                            class="profile-card-contacts link" width=50 height=50 alt="link icon">
-                    </a>
+                        <a class="contact-btn" href="https://github.com/PhillipM18" title="GitHub" aria-label="GitHub">
+                            <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/github.jpg" alt="GitHub">
+                        </a>
 
-                </div>
+                        <a class="contact-btn" href="#" title="Website" aria-label="Website link">
+                            <img src="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/link.png" alt="Link">
+                        </a>
+                    </div>
 
-                <div class="profile-card-ctr">
-                    <button onclick="location.href='https:\/\/messenger.com\/t\/100010382497517'"
-                        class="profile-card__button button--blue js-message-btn">Message</button>
-                    <button onclick="location.href='https:\/\/facebook.com\/100010382497517'"
-                        class="profile-card__button button--orange">Follow</button>
+                    <div class="profile-card-ctr">
+                        <button id="openMessage" class="btn btn-primary">Message</button>
+                        <a class="btn btn-ghost" href="https://facebook.com/100010382497517">Follow</a>
+                    </div>
                 </div>
             </div>
 
+        </div>
+
+        <!-- Modal -->
+        <div id="msgModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+            <div class="modal-card" role="document">
+                <div class="modal-header">
+                    <div>
+                        <div id="modalTitle" class="modal-title">Send a message</div>
+                        <div class="small-muted">I'll receive it on Messenger — or use the direct link above.</div>
+                    </div>
+                    <button id="closeModal" class="close-btn" aria-label="Close message dialog">✕</button>
+                </div>
+
+                <form style="margin-top:12px" id="msgForm">
+                    <div class="meta-row">
+                        <input type="text" name="name" placeholder="Your name" aria-label="Your name">
+                        <input type="email" name="email" placeholder="Email (optional)" aria-label="Your email">
+                    </div>
+                    <div style="margin-top:12px">
+                        <textarea name="message" placeholder="Write a short message..." aria-label="Message text"></textarea>
+                    </div>
+
+                    <div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px">
+                        <button type="button" id="cancelBtn" class="btn btn-ghost">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- partial -->
     <script>
-        const btn = document.querySelector('.js-message-btn');
-        const card = document.querySelector('.js-profile-card');
+        // Modal controls
+        (function () {
+            const openBtn = document.getElementById('openMessage');
+            const modal = document.getElementById('msgModal');
+            const closeBtn = document.getElementById('closeModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const firstFocusableSelector = 'input, textarea, button, [tabindex]:not([tabindex="-1"])';
+            let previouslyFocused = null;
 
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            card.classList.add('active');
-        });
+            function openModal() {
+                previouslyFocused = document.activeElement;
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                // focus first input
+                const first = modal.querySelector(firstFocusableSelector);
+                if (first) first.focus();
+                document.addEventListener('keydown', onKeyDown);
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                if (previouslyFocused) previouslyFocused.focus();
+                document.removeEventListener('keydown', onKeyDown);
+            }
+
+            function onKeyDown(e) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'Tab') trapFocus(e);
+            }
+
+            function trapFocus(e) {
+                const focusable = modal.querySelectorAll(firstFocusableSelector);
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            // close modal when clicking outside the card
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) closeModal();
+            });
+
+            // basic form handling - replace with real integration as needed
+            const form = document.getElementById('msgForm');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                console.log('Message submitted', Object.fromEntries(data.entries()));
+                // friendly feedback
+                closeModal();
+                alert('Message prepared — open Messenger or use the links to send it.');
+            });
+        })();
     </script>
 
 </body>
