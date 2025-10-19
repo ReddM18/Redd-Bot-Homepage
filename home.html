@@ -3,100 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Project Redd Bot</title>
+    <title>Home | Redd Bot</title>
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap");
-
-        :root{
-            --bg-1: linear-gradient(135deg,#0f172a 0%, #0b1220 40%, #071228 100%);
-            --card-bg: rgba(255,255,255,0.06);
-            --card-border: rgba(255,255,255,0.08);
-            --glass-shadow: 0 10px 30px rgba(2,6,23,0.7);
-            --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
-            --muted: #94a3b8;
-        }
-
-        *{box-sizing:border-box}
-
-        html,body{height:100%}
-
-        body{
-            margin:0;
-            font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            color:#e6eef6;
-            background: var(--bg-1) fixed;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:40px 16px;
-        }
-
-        a{color:inherit}
-
-        .wrapper{width:100%;max-width:1000px}
-
-        .profile-card{
-            position:relative;
-            border-radius:16px;
-            padding:46px 28px 36px;
-            background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-            border:1px solid var(--card-border);
-            box-shadow:var(--glass-shadow);
-            backdrop-filter: blur(8px) saturate(120%);
-            overflow:hidden;
-        }
-
-        .top-decor{
-            position:absolute;inset:auto 0 0 0;height:120px;
-            background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));
-            transform:skewY(-3deg);
-            pointer-events:none;
-        }
-
-        .profile-row{display:flex;gap:28px;align-items:center}
-
-        .profile-card__img{flex:0 0 120px;width:120px;height:120px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.06)}
-        .profile-card__img img{width:100%;height:100%;object-fit:cover;display:block}
-
-        .profile-meta{flex:1;min-width:0}
-        .profile-card__name{font-weight:700;font-size:24px;margin:0 0 6px;color:#fff}
-        .profile-card__txt{margin:0;color:var(--muted);font-weight:600}
-
-        .profile-card-loc{display:flex;gap:10px;align-items:center;margin-top:8px;color:var(--muted);font-size:14px}
-
-        .profile-card__homepage{margin-top:12px;color:var(--muted);font-size:15px}
-
-        .profile-card-contacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-        .contact-btn{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 16px rgba(2,6,23,0.6);cursor:pointer}
-        .contact-btn img{width:28px;height:28px;display:block}
-
-        .profile-card-ctr{display:flex;gap:14px;align-items:center;margin-top:20px;flex-wrap:wrap}
-        .btn{padding:12px 20px;border-radius:12px;font-weight:700;border:0;cursor:pointer}
-        .btn:focus{outline:3px solid rgba(124,58,237,0.25);}
-        .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 18px rgba(124,58,237,0.18)}
-        .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-        /* Modal */
-        .modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(2,6,23,0.6);padding:24px;opacity:0;pointer-events:none;transition:all .18s}
-        .modal.open{opacity:1;pointer-events:auto}
-        .modal-card{width:100%;max-width:720px;border-radius:12px;padding:22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(6px)}
-        .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-        .modal-title{font-weight:700;color:#fff}
-        .close-btn{background:transparent;border:0;color:var(--muted);font-weight:700;padding:6px 10px;border-radius:8px;cursor:pointer}
-
-        textarea{width:100%;min-height:160px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);color:#e6eef6}
-        input[type="text"],input[type="email"]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);color:#e6eef6}
-
-        .meta-row{display:flex;gap:12px;margin-top:12px}
-        @media (max-width:680px){.profile-row{flex-direction:column;align-items:flex-start}.profile-card__img{border-radius:14px}}
-
-        .small-muted{font-size:13px;color:var(--muted)}
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 
     <link rel="icon" href="https://raw.githubusercontent.com/ReddM18/Redd-Bot-Homepage/refs/heads/main/logo.png">
@@ -116,7 +27,7 @@
 
                 <div class="profile-meta">
                     <h1 class="profile-card__name">PhillipM18</h1>
-                    <div class="profile-card__txt">Project Dev <strong style="color:#fff">Redd Bot</strong></div>
+                    <div class="profile-card__txt">Project <strong style="color:#fff">Redd Bot</strong></div>
                     <div class="profile-card-loc">
                         <svg class="svg-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
                             <path fill="currentColor" d="M10,0.186c-3.427,0-6.204,2.778-6.204,6.204c0,5.471,6.204,6.806,6.204,13.424c0-6.618,6.204-7.953,6.204-13.424C16.204,2.964,13.427,0.186,10,0.186z M10,14.453c-0.66-1.125-1.462-2.076-2.219-2.974C6.36,9.797,5.239,8.469,5.239,6.39C5.239,3.764,7.374,1.63,10,1.63c2.625,0,4.761,2.135,4.761,4.761c0,2.078-1.121,3.407-2.541,5.089C11.462,12.377,10.66,13.328,10,14.453z"></path>
@@ -151,7 +62,7 @@
 
                     <div class="profile-card-ctr">
                         <button id="openMessage" class="btn btn-primary">Message</button>
-                        <a class="btn btn-ghost" href="https://facebook.com/100010382497517">Follow</a>
+                        <a class="btn btn-ghost" href="https://facebook.com/100081759234321">Follow</a>
                     </div>
                 </div>
             </div>
@@ -188,73 +99,7 @@
     </div>
 
     <!-- partial -->
-    <script>
-        // Modal controls
-        (function () {
-            const openBtn = document.getElementById('openMessage');
-            const modal = document.getElementById('msgModal');
-            const closeBtn = document.getElementById('closeModal');
-            const cancelBtn = document.getElementById('cancelBtn');
-            const firstFocusableSelector = 'input, textarea, button, [tabindex]:not([tabindex="-1"])';
-            let previouslyFocused = null;
-
-            function openModal() {
-                previouslyFocused = document.activeElement;
-                modal.classList.add('open');
-                modal.setAttribute('aria-hidden', 'false');
-                // focus first input
-                const first = modal.querySelector(firstFocusableSelector);
-                if (first) first.focus();
-                document.addEventListener('keydown', onKeyDown);
-            }
-
-            function closeModal() {
-                modal.classList.remove('open');
-                modal.setAttribute('aria-hidden', 'true');
-                if (previouslyFocused) previouslyFocused.focus();
-                document.removeEventListener('keydown', onKeyDown);
-            }
-
-            function onKeyDown(e) {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'Tab') trapFocus(e);
-            }
-
-            function trapFocus(e) {
-                const focusable = modal.querySelectorAll(firstFocusableSelector);
-                if (!focusable.length) return;
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                if (e.shiftKey && document.activeElement === first) {
-                    e.preventDefault();
-                    last.focus();
-                } else if (!e.shiftKey && document.activeElement === last) {
-                    e.preventDefault();
-                    first.focus();
-                }
-            }
-
-            openBtn.addEventListener('click', openModal);
-            closeBtn.addEventListener('click', closeModal);
-            cancelBtn.addEventListener('click', closeModal);
-
-            // close modal when clicking outside the card
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) closeModal();
-            });
-
-            // basic form handling - replace with real integration as needed
-            const form = document.getElementById('msgForm');
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const data = new FormData(form);
-                console.log('Message submitted', Object.fromEntries(data.entries()));
-                // friendly feedback
-                closeModal();
-                alert('Message prepared — open Messenger or use the links to send it.');
-            });
-        })();
-    </script>
+    <script defer src="main.js"></script>
 
 </body>
 
